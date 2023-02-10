@@ -3,7 +3,7 @@ package com.example.homeworkcourse3.services;
 public class Ingredient {
     private String name;
     private int quantity;
-    private String UnitOfMeasurement;
+    private String unitOfMeasurement;
 
     public Ingredient(String name, int quantity, String unitOfMeasurement) {
         if (name != null) {
@@ -16,12 +16,12 @@ public class Ingredient {
 
             this.quantity = quantity;
         } else {
-            throw new RuntimeException("введено некоректное значение");
+            throw new IllegalArgumentException("введено некоректное значение");
         }
         if (unitOfMeasurement != null) {
-            UnitOfMeasurement = unitOfMeasurement;
+            this.unitOfMeasurement = unitOfMeasurement;
         } else {
-            throw new RuntimeException(quantity + " ЧЕГО? КРОКОДИЛОВ?");
+            throw new IllegalArgumentException(quantity + " ЧЕГО? КРОКОДИЛОВ?");
         }       //Великие фразы учителей математики
     }
 }

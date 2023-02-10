@@ -10,7 +10,7 @@ import java.util.Map;
 @Service
 
 public class RecipeServiceImpl implements RecipeService {
-    public static Map<Integer, Recipe> listRecipe = new HashMap<>();
+    public final Map<Integer, Recipe> listRecipe = new HashMap<>();
     private static int counter = 0;
 
     @Override
