@@ -2,6 +2,9 @@ package com.example.homeworkcourse3.Controllers;
 
 import com.example.homeworkcourse3.services.Ingredient;
 import com.example.homeworkcourse3.services.IngredientService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/ingredient")
+@Tag(name = "Ингредиенты", description = "Внесение, удаление и просмотр ингридиентов")
 
 public class IngredientsController {
     private final IngredientService ingredientService;
@@ -18,21 +22,24 @@ public class IngredientsController {
     }
 
     @PostMapping
+    @Operation(summary = "Добавление игредиента")
     public ResponseEntity<Integer> addIngredient(@RequestBody Ingredient ingredient) {
         int id = ingredientService.addIngredient(ingredient);
         return ResponseEntity.ok(id);
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Просмотр игредиента")
     public ResponseEntity getIngredientId(@PathVariable int id) {
         Ingredient ingredient = ingredientService.showIngredient(id);
-        if (ingredient == null) {
+        if (ObjectUtils.isEmpty(ingredient)) {
             return ResponseEntity.notFound().build();
         }
 
         return ResponseEntity.ok(ingredient);
     }
     @GetMapping
+    @Operation(summary = "Просмотр всех ингридиентов")
     public ResponseEntity getIngredient() {
         Map<Integer, Ingredient> mapIngredient = ingredientService.listIngredient();
 
@@ -40,15 +47,17 @@ public class IngredientsController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Изменение игредиента")
     public ResponseEntity<Ingredient> editIngredient(@PathVariable int id, @RequestBody Ingredient ingredient) {
         Ingredient ingredient1 = ingredientService.editIngredient(id, ingredient);
-        if (ingredient1 == null) {
+        if (ObjectUtils.isEmpty(ingredient1)) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(ingredient);
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Удаление игредиента")
     public ResponseEntity<Void> deleteIngredient(@PathVariable int id) {
         if (ingredientService.deleteIngredient(id)) {
             return ResponseEntity.ok().build();

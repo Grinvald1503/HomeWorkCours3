@@ -14,18 +14,5 @@ public class Recipe {
     private List<Ingredient> ingredients;
     private List<String> steps;
 
-    public Recipe(String name, int timeMin) {
-        if (name !=null) {
-            this.name = name;
-        }
-        else {
-            throw new IllegalArgumentException("название рецепта не введено");
-        }
-        if (timeMin > 0) {
 
-            this.timeMin = timeMin;
-        } else {
-            throw new IllegalArgumentException("введено некоректное значение");
-        }
-    }
 }

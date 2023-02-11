@@ -2,6 +2,7 @@ package com.example.homeworkcourse3.services.impl;
 
 import com.example.homeworkcourse3.services.Recipe;
 import com.example.homeworkcourse3.services.RecipeService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class RecipeServiceImpl implements RecipeService {
     public Recipe showRecipe(int id) {
 
         Recipe recipe = listRecipe.get(id);
-        if (recipe != null) {
+        if (!ObjectUtils.isEmpty(recipe)) {
             return recipe;
         }
 

@@ -2,6 +2,7 @@ package com.example.homeworkcourse3.services.impl;
 
 import com.example.homeworkcourse3.services.Ingredient;
 import com.example.homeworkcourse3.services.IngredientService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public Ingredient showIngredient(int id) {
         Ingredient ingredient = listIngredients.get(id);
-        if (ingredient != null) {
+        if (!ObjectUtils.isEmpty(ingredient)) {
             return ingredient;
         }
 
