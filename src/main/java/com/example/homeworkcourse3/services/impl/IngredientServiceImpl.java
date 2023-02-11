@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+
 @Service
 
 public class IngredientServiceImpl implements IngredientService {
@@ -14,14 +15,45 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
 
-    public void addIngredient(Ingredient ingredient) {
+    public int addIngredient(Ingredient ingredient) {
         counter++;
         listIngredients.put(counter, ingredient);
+
+        return counter;
+    }
+
+    @Override
+    public Ingredient showIngredient(int id) {
+        Ingredient ingredient = listIngredients.get(id);
+        if (ingredient != null) {
+            return ingredient;
+        }
+
+        return null;
+
+    }
+    @Override
+    public Map<Integer, Ingredient> listIngredient() {
+
+
+        return listIngredients;
 
     }
 
     @Override
-    public Ingredient showIngredient(int number) {
-        return listIngredients.get(number);
+    public Ingredient editIngredient(int id, Ingredient ingredient) {
+        if (listIngredients.containsKey(id)) {
+            listIngredients.put(id, ingredient);
+            return ingredient;
+        }
+        return null;
+    }
+    @Override
+    public boolean deleteIngredient(int id) {
+        if (listIngredients.containsKey(id)) {
+            listIngredients.remove(id);
+            return true;
+        }
+        return false;
     }
 }
