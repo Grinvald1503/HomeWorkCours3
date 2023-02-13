@@ -4,6 +4,8 @@ import com.example.homeworkcourse3.services.Ingredient;
 import com.example.homeworkcourse3.services.Recipe;
 import com.example.homeworkcourse3.services.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +26,36 @@ public class RecipeController {
 
     @PostMapping
     @Operation(summary = "Добавление рецепта")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "рецепт добавлен"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Рецепт не добавлен, проверите правильно ли введены данные"
+            )
+
+    }
+    )
     public void addRecipe(@RequestBody Recipe recipe) {
         recipeService.addRecipe(recipe);
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Просмотр рецепта")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "рецепт найден"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Рецепт не найден, проверите правильно ли введены данные"
+            )
+
+    }
+    )
     public ResponseEntity getRecipeId(@PathVariable int id) {
         Recipe recipe = recipeService.showRecipe(id);
         if (ObjectUtils.isEmpty(recipe)) {
@@ -40,6 +66,18 @@ public class RecipeController {
     }
     @GetMapping
     @Operation(summary = "Просмотр всех рецептов")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "рецепты выведены"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "ошибка запроса"
+            )
+
+    }
+    )
     public ResponseEntity getRecipe() {
         Map<Integer, Recipe> mapRecipe = recipeService.listRecipe();
 
@@ -48,6 +86,18 @@ public class RecipeController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Изменение рецепта")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "рецепт изменён"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Рецепт не найден, проверите правильно ли введены данные"
+            )
+
+    }
+    )
     public ResponseEntity<Recipe> editRecipe(@PathVariable int id, @RequestBody Recipe recipe) {
         Recipe recipe1 = recipeService.editRecipe(id, recipe);
         if (ObjectUtils.isEmpty(recipe1)) {
@@ -58,6 +108,18 @@ public class RecipeController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Удаление рецепта")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "рецепт удалён"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Рецепт не найден, проверите правильно ли введены данные"
+            )
+
+    }
+    )
     public ResponseEntity<Void> deleteRecipe(@PathVariable int id) {
         if (recipeService.deleteRecipe(id)) {
             return ResponseEntity.ok().build();
