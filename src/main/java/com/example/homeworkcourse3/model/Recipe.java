@@ -1,11 +1,14 @@
-package com.example.homeworkcourse3.services;
+package com.example.homeworkcourse3.model;
 
-import com.example.homeworkcourse3.services.Ingredient;
+import com.example.homeworkcourse3.model.Ingredient;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 
 
 public class Recipe {

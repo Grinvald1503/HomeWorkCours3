@@ -1,7 +1,6 @@
 package com.example.homeworkcourse3.Controllers;
 
-import com.example.homeworkcourse3.services.Ingredient;
-import com.example.homeworkcourse3.services.Recipe;
+import com.example.homeworkcourse3.model.Recipe;
 import com.example.homeworkcourse3.services.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

@@ -1,5 +1,7 @@
 package com.example.homeworkcourse3.services;
 
+import com.example.homeworkcourse3.model.Recipe;
+
 import java.util.Map;
 
 public interface RecipeService {
