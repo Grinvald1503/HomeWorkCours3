@@ -16,7 +16,7 @@ import java.util.Map;
 @Service
 
 public class RecipeServiceImpl implements RecipeService {
-    public Map<Integer, Recipe> listRecipe = new HashMap<>();
+    private Map<Integer, Recipe> listRecipe = new HashMap<>();
     private static int counter = 0;
     final private RecipeFileService filesService;
 
@@ -70,6 +70,7 @@ public class RecipeServiceImpl implements RecipeService {
     public boolean deleteRecipe(int id) {
         if (listRecipe.containsKey(id)) {
             listRecipe.remove(id);
+            saveToFile();
             return true;
         }
         return false;
@@ -79,7 +80,7 @@ public class RecipeServiceImpl implements RecipeService {
             String json = new ObjectMapper().writeValueAsString(listRecipe);
             filesService.saveToFileRecipe(json);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -89,7 +90,7 @@ public class RecipeServiceImpl implements RecipeService {
             listRecipe = new ObjectMapper().readValue(json, new TypeReference<HashMap<Integer, Recipe>>() {
             });
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }

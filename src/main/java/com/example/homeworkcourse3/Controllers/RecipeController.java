@@ -29,12 +29,7 @@ public class RecipeController {
             @ApiResponse(
                     responseCode = "200",
                     description = "рецепт добавлен"
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Рецепт не добавлен, проверите правильно ли введены данные"
             )
-
     }
     )
     public void addRecipe(@RequestBody Recipe recipe) {
@@ -63,18 +58,14 @@ public class RecipeController {
 
         return ResponseEntity.ok(recipe);
     }
+
     @GetMapping
     @Operation(summary = "Просмотр всех рецептов")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
                     description = "рецепты выведены"
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "ошибка запроса"
             )
-
     }
     )
     public ResponseEntity getRecipe() {

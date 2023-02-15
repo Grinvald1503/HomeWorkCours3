@@ -31,8 +31,9 @@ public class IngredientFilesServiceImpl implements IngredientFilesService {
         try {
             return Files.readString(Path.of(dataFilePath, dataFileName));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return "Ошибка чтения";
     }
 
     private boolean cleanDataFileIngredient() {

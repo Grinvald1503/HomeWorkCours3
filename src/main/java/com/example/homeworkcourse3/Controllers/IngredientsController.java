@@ -29,10 +29,6 @@ public class IngredientsController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Ингридиент создан"
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Ингридиент не создан, проверите правильно ли введены данные"
             )
 
     }
@@ -72,12 +68,7 @@ public class IngredientsController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Ингридиенты выведены"
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "ошибка ввода запроса"
             )
-
     }
     )
     public ResponseEntity getIngredient() {
