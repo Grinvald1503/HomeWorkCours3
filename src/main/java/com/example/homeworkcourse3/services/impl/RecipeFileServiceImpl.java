@@ -4,14 +4,15 @@ import com.example.homeworkcourse3.services.RecipeFileService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 @Service
 public class RecipeFileServiceImpl implements RecipeFileService {
-    @Value("${path.of.data.file}")
+    @Value("${path.to.recipe.file}")
     private String dataFilePath;
-    @Value("${recipe.of.data.file}")
+    @Value("${name.of.recipe.file}")
     private String dataFileName;
 
     @Override
@@ -35,8 +36,8 @@ public class RecipeFileServiceImpl implements RecipeFileService {
         }
         return "Ошибка чтения";
     }
-
-    private boolean cleanDataFileRecipe() {
+@Override
+    public boolean cleanDataFileRecipe() {
         try {
             Path path = Path.of(dataFilePath, dataFileName);
             Files.deleteIfExists(path);
@@ -47,6 +48,10 @@ public class RecipeFileServiceImpl implements RecipeFileService {
             return false;
         }
 
+    }
+    @Override
+    public File getDataFile() {
+        return new File(dataFilePath + "/" + dataFileName);
     }
 }
 
