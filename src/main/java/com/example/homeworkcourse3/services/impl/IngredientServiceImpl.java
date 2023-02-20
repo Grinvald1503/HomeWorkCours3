@@ -23,10 +23,8 @@ public class IngredientServiceImpl implements IngredientService {
     public IngredientServiceImpl(IngredientFilesService filesService) {
         this.filesService = filesService;
     }
-//       @PostConstruct
-//    private void init() {
-//        readFromFile();
-//    }
+       @PostConstruct
+    private void init() {readFromFile();}
 
     @Override
 
