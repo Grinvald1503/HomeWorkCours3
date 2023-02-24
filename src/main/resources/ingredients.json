@@ -1,0 +1,17 @@
+{
+  "1": {
+    "name": "Картошка",
+    "quantity": 3,
+    "unitOfMeasurement": "шт"
+  },
+  "2": {
+    "name": "Сайра",
+    "quantity": 1,
+    "unitOfMeasurement": "шт"
+  },
+  "3": {
+    "name": "Рис",
+    "quantity": 50,
+    "unitOfMeasurement": "грамм"
+  }
+}
